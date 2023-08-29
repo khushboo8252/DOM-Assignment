@@ -22,6 +22,32 @@ When user enter 8 and 4 and clicks on Divide button,an alert should come with 2 
     <title>calculator</title>
 </head>
 <body>
-    
+    <input type="text" id="inp1">
+    <input type="text" id="inp2">
+    <button onclick="b1()">Add</button>
+    <button onclick="b2()">Subtract</button>
+    <button onclick="b3()">Divide</button>
+    <button onclick="b4()">Multiply</button>
 </body>
+<script>
+let headTag1=document.getElementById("inp1")
+let headTag2=document.getElementById("inp2")
+    function b1(){
+        let Input= +headTag1.value + +headTag2.value
+        alert(Input);
+    }
+    function b2(){
+        let Input= +headTag1.value - +headTag2.value
+        alert(Input);
+    }
+    function b3(){
+        let Input= +headTag1.value / +headTag2.value
+        alert(Input);
+    }
+    function b4(){
+        let Input= +headTag1.value * +headTag2.value
+        alert(Input);
+    }
+
+</script>
 </html>
