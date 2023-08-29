@@ -10,20 +10,23 @@
   <hr>
   <input type="text" id ="name" placeholder="Enter your name">
   <select id="gender">
+    <option value="">--</option>
     <option value="Male">Male</option>
     <option value="Female">Female</option>
   </select>
-  <button onclick="click()">Apply</button>
+  <button onclick="display()">Apply</button>
 </body>
 <script>
     //Design an application such that when user clicks on Apply button,
      //he should take entered values from both input and select tags and display it in h2 tag with id "display"
-    let headTag1=document.getElementById("display")
-    let headTag2=document.getElementById("name")
-    let headTag3=document.getElementById("gender")
-    function click()
+     
+    function display()
     {
-       headTag1.innerText=headTag2.value+headTag3.value
+    
+        let name=document.getElementById("name").value;
+        let gender=document.getElementById("gender").value;
+        let display=document.getElementById("display")
+        display.innerText=name+gender
    
     }
 
