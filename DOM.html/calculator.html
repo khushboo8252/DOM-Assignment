@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style>
+         #head{
+            text-align: center;
+            color: teal;
+            margin-bottom:50px;
+            
+         }
+         #border{
+            height:380px;
+            width:25%;
+            margin-left:460px;  
+            /* border:1px solid white; */
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            padding:30px;
+         }
+         #main{
+            height:47px;
+            width:67%;
+            margin-left:55px;
+            margin-top:40px;
+            margin-bottom:20px ;
+            border-radius:10px;
+            text-align: center;
+            font-size:large;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+         }
+         #container{
+            display: grid;
+            grid-template-columns: repeat(4,50px);
+            grid-template-rows: repeat(4,50px);
+            gap: 10px;
+            margin-left:55px;
+            
+         }
+       
+         #b1{
+            height:50px;
+            width:50px;
+            background-color:white;
+            border-radius: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+         }
+
+         #b2{
+            height:50px;
+            width:50px;
+            background-color:black;
+            border-radius: 10px;
+            color:white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+         }   
+         #b3{
+            height:50px;
+            width:50px;
+            background-color:red;
+            border-radius: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+         }
+         
+    </style>
+</head>
+<body>
+    <h1 id="head">Masai Calculator</h1>
+    <div id="border">
+        <div id="main"></div>
+        <div id="container">
+            <div class="keypad">
+                <button id="b1">1</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">2</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">3</button>
+            </div>
+            <div class="operator">
+                <button id="b2">+</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">4</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">5</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">6</button>
+            </div>
+            <div class="operator">
+                <button id="b2">-</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">7</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">8</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">9</button>
+            </div>
+            <div class="operator">
+                <button id="b2">*</button>
+            </div>
+            <div id="reset">
+                <button id="b3">C</button>
+            </div>
+            <div class="keypad">
+                <button id="b1">0</button>
+            </div>
+            <div id="equal">
+                <button id="b2">=</button>
+            </div>
+            <div class="operator">
+                <button id="b2">/</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script>
+    let firstNo="";
+    let secondNo="";
+    let operator="";
+    let FN=true;
+let button=document.getElementById("equal");
+let reset=document.getElementById("reset");
+let display=document.getElementById("main")
+
+button.addEventListener("click",function(){
+    let result=calculate();
+    display.innerText=result;
+});
+let btns=document.querySelectorAll(".keypad>button")
+for(let i=0;i<btns.length;i++){
+    btns[i].addEventListener("click",function(){
+    if(FN){
+        firstNo+=btns[i].innerText;
+        display.innerText=firstNo
+        }
+    else{
+        secondNo += btns[i].innerText;
+        display.innerText=secondNo
+    }
+});
+}
+let ops=document.querySelectorAll(".operator>button")
+for(let i=0;i<ops.length;i++){
+    ops[i].addEventListener("click",function(){
+        operator=ops[i].innerText;
+        display.innerText=operator;
+        FN=false;
+    });
+}
+reset.addEventListener("click", function () {
+        firstNo = "";
+        secondNo = "";
+        operator = "";
+        FN = true;
+        display.innerText = "";
+    });
+   
+function calculate() {
+        switch (operator) {
+            case '+':
+                return Number(firstNo) + Number(secondNo);
+            case '-':
+                return Number(firstNo) - Number(secondNo);
+            case '*':
+                return Number(firstNo) * Number(secondNo);
+            case '/':
+                return Number(firstNo) / Number(secondNo);
+            default:
+                return "Invalid operator";
+        }
+    }
+</script>
+</html>

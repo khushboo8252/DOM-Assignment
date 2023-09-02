@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #box{
+      width:100px;
+      text-align: center;
+      border: 1px solid #181717;
+      padding: 5px;
+      padding-left: 2px;
+      margin-bottom:5px;
+      
+    }
+   
+   
+    </style>
+</head>
+<body>
+    <h1>Score</h1>
+    <div id="box">0</div>
+        <div>
+       <button onclick="button(1)">1</button>
+       <button onclick="button(2)">2</button>
+       <button onclick="button(3)">3</button>
+       <button onclick="button(4)">4</button>
+       <button onclick="button(5)">5</button>
+       <button onclick="button(6)">6</button>
+       <button onclick="button(7)">7</button>
+       <button onclick="button(8)">8</button>
+       <button onclick="button(9)">9</button>
+       <button onclick="button(0)">0</button>
+    </div>
+    
+    <button onclick="enter()">Enter</button>
+    <div>
+        <p >Min Score:<span id="min">0</span></p>
+        <p >Max Score:<span id="max">0</span></p>
+    </div>
+</body>
+<script>
+    let score="";  //currentscore
+    let minScore=0;
+    let maxScore=0;
+    function button(number){
+        score+=number;
+        update();
+    }
+    function update(){
+        document.getElementById('box').innerText = score; 
+    }
+    function enter() {
+      let score1 =parseInt(score);
+
+if (isNaN(score1)) {
+  alert('Please enter a valid score.');
+  return;
+
+}  
+
+      if (score1 < minScore || minScore==0) {
+        minScore = score1;
+        document.getElementById('min').innerText = minScore;
+      }
+
+      if (score1 > maxScore) {
+        maxScore = score1;
+        document.getElementById('max').innerText = maxScore;
+      }
+
+      score = '';
+      update();
+    }
+// function enter() {
+//       const score = parseInt(currentScore);
+
+//       if (isNaN(score)) {
+//         alert('Please enter a valid score.');
+//         return;
+     
+//       }
+
+//       if (score < minScore || minScore == 0 ) {
+//         minScore = score;
+//         document.getElementById('min-score').textContent = minScore;
+//       }
+
+//       if (score > maxScore) {
+//         maxScore = score;
+//         document.getElementById('max-score').textContent = maxScore;
+//       }
+
+//       currentScore = '';
+//       updateScoreBox();
+//     }
+
+</script>
+</html>
