@@ -1,6 +1,3 @@
-// fill in javascript code here
-
-
 
 // fill in javascript code here
 

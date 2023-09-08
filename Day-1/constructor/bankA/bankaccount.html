@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bankaccount</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function bankAccount(accountNo, name, type, balance){
+        this.accountNo = accountNo;
+        this.name = name;
+        this.type = type;
+        this.balance = balance;
+        this.active = true;
+
+    }
+    bankAccount.prototype.deposit = function(amount){
+        if(amount>0){
+            this.balance+=amount;
+            console.log('Deposit ${amount}. New Balance ${this.balance}')
+        }else{
+            console.log('Invalid deposit amount');
+        }
+    }
+    bankAccount.prototype.withdraw = function (amount){
+        if(this.active==true && amount>=0 && this.balnce>=amount){
+            console.log('Withdraw ${amount}. New Balance ${this.balance}')
+        }else{
+            console.log('Invalid withdraw amount or Insufficient balance')
+        }
+    }
+    function getTotalBalance(accounts){
+        let total=0;
+        for(let acc of accounts){
+            if(acc.active) total+=acc.balance
+        }
+        return total;
+    }
+   let account1 = new bankAccount(1001, 'John Doe', 'Savings', 500);
+   let account2 = new bankAccount(1002,'Rahul','current',1500);
+   let account3 = new bankAccount(1002,'Amit','current',2500);
+
+   let arr=[account1,account2,account3];
+   console.log(getTotalBalance(arr));
+</script>
+</html>
