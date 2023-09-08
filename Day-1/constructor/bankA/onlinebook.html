@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book</title>
+</head>
+<body>
+    
+</body>
+<script>
+     function author (name,birthYear,nationality){
+          this.name =name;
+          this.birthYear =birthYear;
+          this.nationality =nationality;
+          
+    };
+    function book (title,author,genre,price){
+          this.title =title;
+          this.author =author;
+          this.genre =genre;
+          this.price =price;
+    };
+    book.prototype.getBookInfo = function(){
+        console.log('title: ${this.title}');
+        console.log('athor: ${this.author}');
+        console.log('genre: ${this.genre}');
+        console.log('price: $${this.price}');
+
+    };
+
+    let author1= new author('Carmen Covito' ,1948,'Italy');
+    let author2= new author('Sarubhakta' ,1956,'Nepal');
+
+
+    let book1=new book('Harry Potter',author1,'Fantasy',15);
+    let book2=new book('Disney',author2,'Dystopian',18);
+
+    let bookstore=[book1,book2];
+    bookstore.forEach(function(book){
+        book.getBookInfo();
+    })
+
+</script>
+</html>
