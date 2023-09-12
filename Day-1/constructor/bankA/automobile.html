@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automobile</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function automobile(name,model,year){
+        this.name=name;
+        this.model=model;
+        this.year=year;
+    }
+    
+    automobile.prototype.battery=function(){
+        console.log("battery")
+    }
+    automobile.prototype.call=function(){
+        console.log("calling")
+    }
+    
+    function fourWheeler (name,model,year,wheel){
+        automobile.call(this,name,model,year)
+        this.wheel=wheel
+    }
+  fourWheeler.prototype=Object.create(automobile.prototype);
+  fourWheeler.prototype.hang=function(){
+    console.log('hanging')
+  }
+  let car=new fourWheeler('TCS','25B',2002,4);
+  console.log(car)
+  
+  
+</script>

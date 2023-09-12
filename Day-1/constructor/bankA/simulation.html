@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simulation</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function vehicle(brand,model,speed,fuelType){
+        this.brand=brand;
+        this.model=model;
+        this.speed=speed;
+        this.fuelType=fuelType;
+    }
+    vehicle.prototype.accelerate=function(increase){
+        this.speed+=increase;
+        console.log('speed increased to ${this.speed}')
+    }
+    vehicle.prototype.brake=function(decrease){
+        this.speed-=decrease;
+        console.log('speed decreased to ${this.brake}')
+    }
+    vehicle.prototype.refuel=function(){
+      
+        console.log('${this.model} is refueling')
+    }
+    function car(brand,model,speed,fuelType,numberOfWheeler){
+        vehicle.call(this,brand,model,speed,fuelType);
+        this.numberOfWheeler=numberOfWheeler
+    }
+    car.prototype=Object.create(vehicle.prototype);
+    car.prototype.hang=function(){
+        console.log('${this.model} is hanging')
+    }
+   function airplane(brand,model,speed,fuelType,numberOfWheeler,numberOfEngines,hasLandingGear){
+    car.call(this,brand,model,speed,fuelType,numberOfWheeler);
+    this.numberOfEngines=numberOfEngines
+    this.hasLandingGear=hasLandingGear
+   }
+   airplane.prototype=Object.create(car.prototype);
+   airplane.prototype.connect=function(){
+    console.log('connected')
+   }
+   let car1=new car('BMW','thar',250,'petrol',4);
+   let airplane1=new airplane('indigo','thar',300,'diesel',4,2,5)
+
+   console.log(car1);
+    car1.accelerate(50)
+   console.log(airplane1)
+
+</script>
