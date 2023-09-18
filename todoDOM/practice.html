@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   function mobile(brand,model){
+    this.brand=brand;
+    this.model=model;
+   }
+   mobile.prototype.call=function(){
+    console.log('calling')
+   }
+   mobile.prototype.message=function(){
+    console.log('message')
+   }
+   function car(brand,model,year){
+    mobile.call(this,brand,model);
+    this.year=year
+   }
+   car.prototype=Object.create(mobile.prototype);
+   car.prototype.hang=function(){
+    console.log('hanging')
+   }
+   let car1=new car('tcs',256,2005)
+   console.log(car1)
+   
+</script>

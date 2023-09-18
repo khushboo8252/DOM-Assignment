@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        *{
+            text-align: center;
+            margin:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stopwatch</h1>
+    <div id="stopwatch">0</div>
+    <button onclick="start()">start</button>
+    <button onclick="pause()">pause</button>
+    <button onclick="reset()">reset</button>
+    <div id="run">false</div>
+</body>
+<script>
+    let display=document.getElementById("stopwatch");
+    let run=document.getElementById("run");
+    let seconds=0;
+    let timer=null;
+    let running=false;
+    function start(){
+        if(running==false){
+            running=true;
+            setInterval(updatewatch,1000);
+        }
+           run.textContent=running;
+    }
+    function pause(){   
+            running=false;
+            clearInterval(timer); 
+           run.textContent=running;
+    }
+    function reset(){   
+            running=false;
+            clearInterval(timer); 
+           seconds=0;
+           updatewatch();
+    }
+    function updatewatch(){
+        if(running==true){
+            seconds++;
+        }
+        display.textContent=seconds
+    }
+
+</script>
+</html>
