@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone pe</title>
+    <style>
+   body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+   }
+   #paymentContainer{
+    display:none;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.986);
+    border-radius: 5px;
+   }
+   #processing{
+    font-size: 24px;
+    margin-top: 20px;
+   }
+   .success, .failure{
+    font-size: 24px;
+    margin-top: 40px;
+   }
+   #makepayment{
+    margin:10px;
+   }
+   #photo{
+    height:30%;
+    max-width: 50%;
+   }
+    </style>
+</head>
+<body>
+    <h1>Payment System</h1>
+    <button id="makePayment">Make Payment</button>
+    <div class="payment-container" id="paymentContainer">
+       <h2>Payment Processing...</h2>
+       <div id="processing">Processing...</div>
+    </div>
+</body>
+<script>
+let paymentContainer=document.getElementById("paymentContainer");
+let processingText=document.querySelector("#processing");
+async function makePayment(){
+    paymentContainer.style.display="block";
+    try{
+        let issuccess=Math.random() <0.5;
+        await new Promise ((resolve,reject)=>{
+            setTimeout(()=>{
+                if(issuccess){
+                    resolve();
+                }else{
+                    reject();
+                }
+            },3000)
+        });
+        paymentContainer.innerHTML=`
+        <h2 class="success">Payment Successful</h2>
+        <img id="photo" src="https://i.stack.imgur.com/YbIni.png"  alt="sucess">;
+        `;
+    } catch (error){
+        paymentContainer.innerHTML=`
+        <h2 class="failure">Payment Failed</h2>
+        <img id="photo" src="https://miro.medium.com/v2/resize:fit:810/1*OkeqV425CNZUQT2HSkTnJA.png" alt="failed">
+        `;
+    }
+}
+document.getElementById('makePayment').addEventListener('click',makePayment)
+</script>
+</html>
