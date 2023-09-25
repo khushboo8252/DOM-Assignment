@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    let OMDB_API_KEY="deaelbao";
+    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=447bb7d1`)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(movieList){
+        let movies = movieList.Search
+        displayData (movies)
+    })
+    .catch(function(err){
+        console.log(err)
+    })
+    function displayData(data){
+        data.forEach(function(movie){
+            let movieCard =document.createElement("div")
+            movieCard.className ="movie-card"
+            let movieImageElement= document.createElement("img")
+            movieImageElement.src =movie.Poster
+            let movieNameElement = document.createElement("p")
+            movieNameElement.textContent =movie.Title
+            let goToMovieDetailsButton = document.createElement("button")
+            goToMovieDetailsButton.textContent="Go to Movie Details"
+            goToMovieDetailsButton.onclick = function(){
+                localStorage.setItem('imdbID',movie.imdbID)
+            }
+            movieCard.append(
+                movieImageElement,
+                movieNameElement,
+                goToMovieDetailsButton
+            )
+            rootElement.append(movieCard)
+        })
+    }
+</script>
+</html>

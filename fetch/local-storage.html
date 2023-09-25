@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            width: 410px;
+            margin:0 auto;
+            background-color: rgb(228, 247, 135);
+        }
+        h1,h2,h3{
+            margin-left: 5px;
+        }
+       
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #8e73f0;
+           
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+           
+            background-color: #1948e0;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"],
+        button {
+            margin: 10px 0;
+            padding: 5px;
+            width: 90%;
+            margin-left: 5px;
+        }
+        button {
+            background-color: #ff0022;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+   <div id="container">
+    <h1>User Data Storage</h1>
+    <form id="userDataForm">
+        <h3>Name:</h3>
+        <input type="text" id="name"placeholder="Enter name">
+        <h3>Age:</h3>
+        <input type="number" id="age"placeholder="Enter age"><br><br>
+        <input type="submit" placeholder="Submit">
+    </form>
+    <button id="retrieveData">Display Data</button>
+    <div id="displayData">
+      <h2>Storage Data</h2>
+      <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="userDataTable">
+        </tbody>
+      </table>
+    </div>
+   </div>
+</body>
+<script>
+    let userDataForm = document.getElementById('userDataForm');
+    let retrieveDataButton = document.getElementById('retrieveData');
+    let userDataTable = document.getElementById('userDataTable');
+
+    userDataForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let name = document.getElementById('name').value;
+        let age = document.getElementById('age').value;
+
+        let userData = {
+            name,
+            age,
+        };
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        userDataForm.reset();
+    });
+
+    retrieveDataButton.addEventListener('click', function () {
+        let userDataString = localStorage.getItem('userData');
+        let userData = JSON.parse(userDataString);
+
+        if (userData) {
+
+            let newRow = userDataTable.insertRow();
+            let nameCell = newRow.insertCell(0);
+            let ageCell = newRow.insertCell(1);
+
+            nameCell.textContent = userData.name;
+            ageCell.textContent = userData.age;
+        } else {
+            alert('No user data found in Local Storage.');
+        }
+    });
+</script>
+</html>
