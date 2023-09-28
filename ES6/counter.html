@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <p>Count: <span id="count">0</span></p>
+    <button id="toggleButton">Start</button>
+    <button id="incrementButton">Increment</button>
+    <button id="decrementButton">Decrement</button>
+
+    <script>
+        class Counter {
+            constructor() {
+                this.count = 0;
+                this.intervalId = null;
+                this.isAutoIncrementing = false;
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                const toggleButton = document.getElementById('toggleButton');
+                toggleButton.addEventListener('click', () => this.toggleCounter());
+
+                const incrementButton = document.getElementById('incrementButton');
+                incrementButton.addEventListener('click', () => this.increment());
+
+                const decrementButton = document.getElementById('decrementButton');
+                decrementButton.addEventListener('click', () => this.decrement());
+            }
+
+            toggleCounter() {
+                if (this.isAutoIncrementing) {
+                    clearInterval(this.intervalId);
+                    this.isAutoIncrementing = false;
+                    document.getElementById('toggleButton').textContent = 'Start';
+                } else {
+                    this.intervalId = setInterval(() => this.increment(), 1000);
+                    this.isAutoIncrementing = true;
+                    document.getElementById('toggleButton').textContent = 'Stop';
+                }
+            }
+
+            increment() {
+                this.stopAutoCounter();
+                this.count++;
+                this.updateCountDisplay();
+            }
+
+            decrement() {
+                this.stopAutoCounter();
+                this.count--;
+                this.updateCountDisplay();
+            }
+
+            stopAutoCounter() {
+                if (this.isAutoIncrementing) {
+                    clearInterval(this.intervalId);
+                    this.isAutoIncrementing = false;
+                    document.getElementById('toggleButton').textContent = 'Start';
+                }
+            }
+
+            updateCountDisplay() {
+                document.getElementById('count').textContent = this.count;
+            }
+        }
+
+        const counter = new Counter();
+    </script>
+</body>
+</html>

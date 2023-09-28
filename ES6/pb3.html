@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Arrow function to convert a character to lowercase
+const charToLower = (char) => {
+    return char.toLowerCase();
+};
+
+// Arrow function to convert a word to lowercase
+const wordToLower = (word) => {
+    return word.split('').map(charToLower).join('');
+};
+
+// Array of strings to be converted to lowercase
+const inputArray = ["MA", "SA", "I", "SCH", "OOL"];
+
+// Use the wordToLower function to convert the array of strings to lowercase
+const outputArray = inputArray.map(wordToLower);
+
+console.log(outputArray); // Output: ["ma", "sa", "i", "sch", "ool"]
+
+</script>
+</html>
