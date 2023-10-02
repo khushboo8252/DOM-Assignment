@@ -9,23 +9,21 @@
     
 </body>
 <script>
-    // Arrow function to convert a character to lowercase
-const charToLower = (char) => {
+
+let charToLower = (char) => {
     return char.toLowerCase();
 };
 
-// Arrow function to convert a word to lowercase
-const wordToLower = (word) => {
+
+let wordToLower = (word) => {
     return word.split('').map(charToLower).join('');
 };
 
-// Array of strings to be converted to lowercase
-const inputArray = ["MA", "SA", "I", "SCH", "OOL"];
 
-// Use the wordToLower function to convert the array of strings to lowercase
-const outputArray = inputArray.map(wordToLower);
+let array = ["MA", "SA", "I", "SCH", "OOL"];
+let outputArray = array.map(wordToLower);
 
-console.log(outputArray); // Output: ["ma", "sa", "i", "sch", "ool"]
+console.log(outputArray);
 
 </script>
 </html>

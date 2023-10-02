@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <table id="table">
+
+   </table> 
+</body>
+<script>
+    let table =document.getElementById("table");
+    async function fun1(){
+        let res =await fetch ("https://fakestoreapi.com/products")
+        let data = await res.json();
+        getData(data);
+    }
+    fun1();
+    function getData (data){
+        let data2 =data.filter(function(ele){
+            return ele.category=="electronics";
+        })
+        .sort(function(a,b){
+            return a.price-b.price ;
+        })
+        console.log(data2);
+    }
+</script>
+</html>

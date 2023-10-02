@@ -20,13 +20,13 @@
             }
 
             setupEventListeners() {
-                const toggleButton = document.getElementById('toggleButton');
+                let toggleButton = document.getElementById('toggleButton');
                 toggleButton.addEventListener('click', () => this.toggleCounter());
 
-                const incrementButton = document.getElementById('incrementButton');
+                let incrementButton = document.getElementById('incrementButton');
                 incrementButton.addEventListener('click', () => this.increment());
 
-                const decrementButton = document.getElementById('decrementButton');
+                let decrementButton = document.getElementById('decrementButton');
                 decrementButton.addEventListener('click', () => this.decrement());
             }
 
@@ -67,7 +67,7 @@
             }
         }
 
-        const counter = new Counter();
+        let counter = new Counter();
     </script>
 </body>
 </html>
