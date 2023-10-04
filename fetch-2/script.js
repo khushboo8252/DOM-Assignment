@@ -1,32 +1,26 @@
-function searchWeather() {
-    const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
-    const city = document.getElementById('cityInput').value;
+async function fetchWeather() {
+    try {
+        let APIKey = 'cd26a9ba159302799273a74bc8ea0f0b';
+        let city = document.getElementById('cityInput').value;
 
-    // Fetch weather data from OpenWeatherMap API
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            const cityName = document.getElementById('cityName');
-            const weatherIcon = document.getElementById('weatherIcon');
-            const minTemp = document.getElementById('minTemp');
-            const maxTemp = document.getElementById('maxTemp');
-            const wind = document.getElementById('wind');
-            const clouds = document.getElementById('clouds');
-            const sunrise = document.getElementById('sunrise');
-            const sunset = document.getElementById('sunset');
+        let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`);
+        let data = await res.json();
+        console.log(data);
 
-            cityName.textContent = data.name;
-            weatherIcon.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
-            minTemp.textContent = data.main.temp_min;
-            maxTemp.textContent = data.main.temp_max;
-            wind.textContent = data.wind.speed;
-            clouds.textContent = data.clouds.all;
-            sunrise.textContent = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
-            sunset.textContent = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+        let iconId = data.weather[0].icon;
+        let iconUrl = `https://openweathermap.org/img/w/${iconId}.png`;
+        document.getElementById("weatherIcon").src = iconUrl;
+        document.getElementById("minTemp").innerText = data.main.temp_min;
+        document.getElementById("maxTemp").innerText = data.main.temp_max;
+        document.getElementById("wind").innerText = data.wind.speed;
+        document.getElementById("clouds").innerText = data.clouds.all;
+        document.getElementById("sunrise").innerText = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+        document.getElementById("sunset").innerText = new Date(data.sys.sunset * 1000).toLocaleTimeString();
 
-            // Embed Google Map
-            const map = document.getElementById('map');
-            map.src = `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${city}`;
-        })
-        .catch(error => console.error('Error fetching weather data:', error));
+        const googleMapUrl = `https://www.openstreetmap.org/export/embed.html?layer=mapnik&marker=${data.coord.lat},${data.coord.lon}`;
+        document.getElementById("googleMap").src = googleMapUrl;   
+
+    } catch (error) {
+        console.error(error);
+    }
 }
