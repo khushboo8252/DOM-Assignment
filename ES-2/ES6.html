@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class customArray{
+        constructor(...element){
+            this.size=element.length;
+            for(let i=0;i<element.length;i++){
+                this[i]=element[i]
+            }
+        }
+        push(element){
+            this[this.size]=element;
+            this.size++;
+            // console.log(this);
+        }
+        pop(element){
+            if(this.size==0){
+                return undefined;
+            }
+            const popped =this[this.size-1];
+            delete this[this.size-1];
+            this.size--;
+            return popped;
+        }
+
+        top(element){
+            if(this.size==0){
+                return undefined;
+            }
+            return this[this.size-1];
+        }
+        print(element){
+            const array=[];
+            for(let i=0;i<this.size;i++){
+                array.push(this[i]);
+            }
+            console.log(`[${array.join(',')}]`)
+        }
+        printReverse(element){
+            const array=[];
+            for(let i=this.size-1;i>=0;i--){
+                array.push(this[i]);
+            }
+            console.log(`[${array.join(',')}]`)
+        };
+        
+    }
+    const arr =new customArray(1,2,3,4);
+    arr.push(5);
+    arr.print();
+    console.log(arr.pop());
+    console.log(arr.top());
+    arr.printReverse();
+    console.log(arr.size);
+</script>
+</html>
