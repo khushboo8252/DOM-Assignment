@@ -1,0 +1,108 @@
+1. What is React?
+Ans- React is a JavaScript library that specializes in helping developers build user interfaces or UIs.
+     In terms of websites and web applications, UIs are the collection of on-screen menus, search bars, 
+     buttons and anything else someone interacts with to USE a website or app.
+     Before React Js, developers were stuck building UIs by hand with "Vanilla Jvascript" (developer speak for
+     the raw JavaScript language on its own)  or with less UI-focused React predecessors like Query. 
+      
+ 
+
+
+2.Who made React?
+Ans- React was created by Jordan Walke, a software engineer at Facebook. He was inspired by 
+     the functional programming language Lips and sought to create a library that would allow developers 
+     to create  reusable components that could be easily combined to build complex user interfaces.
+
+     React was initally used to build the Facebook news feed and was later released as an open-source project.
+     It quickly gained traction within the developer community due to its simplicity and flexibility.
+
+
+
+
+
+ 3.What is Babel?
+ Ans- Babel is a toolchain is mainly used to convert ECMAScript 2015+ code into a backwards compatible
+      version of JavaScript in current and older browsers or environments. Here are the main things Babel can 
+      for you.
+
+
+
+4.How does Babel convert html code in React into valid code?
+Ans- 1. A user can essentially use future javascript in the browser of today thanks to babel
+        a very well-known transpiler.
+     2. The standard method has the ability to accurately translate the newest javascript code into a format 
+        that the browser can properly understand.
+     3. Babel is a key tool that can translate JSX syntax, which is used to create HTML like code in React components
+        into valid javascript code that can be executed in preferred browsers.
+     4. By converting the JSX code into javascript functions that return the same HTML like structures.
+     5. The functionality then enables the usage of JSX in React apps and ensures compatibility with outdated
+        browsers that might not support the most recent javascript syntax.
+        
+        
+
+5. What is ReactDOM used for? Write an example?
+Ans- ReactDOM is like a bridge between React elements and actual DOM elements. Its job is to 
+take the React elements and turn them into real DOM elements that get rendered on the page.
+
+const reactRoot = ReactDOM.createRoot(rootElement)
+reactRoot.render(element)
+
+
+6. What are the packages that you need to import for react to work with?
+Ans- React ( or any other front-end framework) is an extremely powerful tool to  master. When it comes to 
+     building front-end interfaces. React is hands down a huge time-saver for development teams and individuals.
+     npm packages are paramount when it comes to developer productivity and happiness.
+
+     1. React Testing :-
+     The React Testing Library is a lightweight solution for testing React components. The Library provides 
+     light utility functions on top of react-dom and react-dom/react-utils.
+
+     2. Installation:-
+     This module is distributed via npm packages.
+     yarn add --dev @testing-library/react
+    
+
+
+7.How do you add react to a web application?
+Ans- I can do this in two steps:
+1. Set up a javascript environment that lets you use the JSX syntax, split your code into modules with the 
+ import/ export syntax and use package (for example, React) from the npm package registry.
+2. Render your React components.
+
+
+
+8. What is React.createElement?
+Ans- In Vanilla javascript, you'd interact directly with the DOM elements using the document API. you don't do this.
+Instead, you deal with React elements. We use createElement method from react to createReact elements.
+1. One such property is the $$typeof which is a symbol indicating it's a valid React element.
+2. The props object is where most of your data will reside, it contains properties you define including children.
+
+const element = React.createElement("div",{
+    className: "container",
+    children: "Carpe Diem",
+})
+console.log(element)
+ 
+
+
+9.What are the three properties that createElement accept?
+Ans- Following are the properties of createElement accept:-
+1. type: The type you have passed.
+2. props: The props you have passed except for ref and key. If the type is a component with legacy
+   type.defaultProps, then any missing or undefined props will get the values from type.defaultProps.
+3. ref: The ref you have passed. If missing null.
+
+
+
+
+10. What is the meaning of render and root?
+Ans- Render:-  
+     In React, Render is the technique that can redirect a page with the help of function render().
+     Most importantly, render a function we can use to define the HTML code within the HTML element.
+     It helps to display certain views in the UI using certain logic defined in the render function 
+     and returns to output.
+
+     Root:-
+     In React, the root element refers to the top-level element that is the parent of all other 
+     components in your application. It is typically represented as a DOM node within the public/index html 
+     file that serves as the entry point for your React app.

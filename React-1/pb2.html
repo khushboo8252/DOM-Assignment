@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny Photo</title>
+</head>
+<body>
+    <h3>Above</h3>
+    <div id="root"></div>
+    <h3>Below</h3>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+    <script type="text/babel">
+        let domContainer = document.getElementById('root');
+        const ele = (
+            <div>
+                <img src="https://static.mirchi.in/photo/93343680/93343680.jpg" alt="photo" width="200px"/>
+                <p>Batao Kaisa Hai Mera Hulia?</p>
+            </div>
+        );
+
+        const reactRoot = ReactDOM.createRoot(domContainer);
+        reactRoot.render(ele);
+    </script>
+</body>
+</html>
