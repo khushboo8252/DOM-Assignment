@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Movie Search</title>
+      <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+         }
+
+         input#inp {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px auto;
+         }
+
+         div#output {
+            max-width:1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap:20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+         }
+
+         .movie {
+            display: flex;
+            margin-bottom: 20px;
+         }
+
+         .movie img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+         }
+
+         .movie-info {
+            flex: 1;
+         }
+
+         h2 {
+            font-size: 24px;
+            margin: 0;
+         }
+
+         p {
+            margin: 5px 0;
+         }
+      </style>
+   </head>
+   <body>
+      <input id="inp" type="text" placeholder="Enter movie name" />
+      <div id="output"></div>
+      <script>
+         let inp = document.getElementById("inp");
+         let outputDiv = document.getElementById("output");
+
+         function displayMovies(movies) {
+            outputDiv.innerHTML = ""; 
+            movies.forEach((movie) => {
+               const movieDiv = document.createElement("div");
+               movieDiv.classList.add("movie");
+
+               const poster = document.createElement("img");
+               poster.src = movie.Poster === "N/A" ? "placeholder.jpg" : movie.Poster;
+               movieDiv.appendChild(poster);
+
+               const movieInfo = document.createElement("div");
+               movieInfo.classList.add("movie-info");
+
+               const title = document.createElement("h2");
+               title.textContent = movie.Title;
+               movieInfo.appendChild(title);
+
+               const year = document.createElement("p");
+               year.textContent = "Year: " + movie.Year;
+               movieInfo.appendChild(year);
+
+               const type = document.createElement("p");
+               type.textContent = "Type: " + movie.Type;
+               movieInfo.appendChild(type);
+
+               movieDiv.appendChild(movieInfo);
+               outputDiv.appendChild(movieDiv);
+            });
+         }
+
+         function performOperation(query) {
+            fetch(`https://www.omdbapi.com/?apikey=15a93b4e&s=${query}`)
+               .then((res) => res.json())
+               .then((data) => {
+                  if (data.Search) {
+                     displayMovies(data.Search);
+                  } else {
+                     outputDiv.innerHTML = "No results found.";
+                  }
+               })
+               .catch((err) => console.log(err));
+         }
+
+         function debounce(func, delay) {
+            let timer;
+            function inner(query) {
+               clearTimeout(timer);
+               timer = setTimeout(() => {
+                  func(query);
+               }, delay);
+            }
+            return inner;
+         }
+
+         let debouncedSearch = debounce(performOperation, 500);
+
+         inp.addEventListener("input", () => {
+            let value = inp.value;
+            debouncedSearch(value);
+         });
+      </script>
+   </body>
+</html>
