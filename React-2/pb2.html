@@ -12,19 +12,18 @@
          <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
          <script type="text/babel">
             const Skills = (props) => {
-              return React.createElement(
-                "ul",
-                null,
-                props.items.map((item, index) =>
-                  React.createElement("li", { key: index }, item)
-                )
-              );
+                return React.createElement(
+                    "ul",
+                    null,
+                    props.items.map((item,index) =>
+                     React.createElement("li",{key: index},item)
+                    )
+                );
             };
             const element = React.createElement(Skills, {
-              items: ["skill1", "skill2", "skill3"]
+                items : ["skill1", "skill2", "skill3"]
             });
-
-         ReactDOM.createRoot(document.getElementById("root")).render(element);
+            ReactDOM.createRoot(document.getElementById("root")).render(element)
          </script>         
 
     </body>
@@ -33,4 +32,18 @@
 
 
      
+<!-- 
+const Skills = (props) => {
+    return React.createElement(
+      "ul",
+      null,
+      props.items.map((item, index) =>
+        React.createElement("li", { key: index }, item)
+      )
+    );
+  };
+  const element = React.createElement(Skills, {
+    items: ["skill1", "skill2", "skill3"]
+  });
 
+ReactDOM.createRoot(document.getElementById("root")).render(element) -->
